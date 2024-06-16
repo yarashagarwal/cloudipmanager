@@ -1,0 +1,148 @@
+{
+    "ipBlocks": [
+      {
+        "id": 1,
+        "cidr": "192.168.0.0/24",
+        "description": "Office Network",
+        "createdDate": "2023-01-01",
+        "modifiedDate": "2023-01-15",
+        "status": "Active",
+        "subnets": [
+          {
+            "id": 1,
+            "cidr": "192.168.0.0/25",
+            "description": "First half of the office network",
+            "createdDate": "2023-01-01",
+            "modifiedDate": "2023-01-15",
+            "status": "Active"
+          },
+          {
+            "id": 2,
+            "cidr": "192.168.0.128/25",
+            "description": "Second half of the office network",
+            "createdDate": "2023-01-01",
+            "modifiedDate": "2023-01-15",
+            "status": "Active"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "cidr": "10.0.0.0/16",
+        "description": "Data Center Network",
+        "createdDate": "2023-01-10",
+        "modifiedDate": "2023-01-20",
+        "status": "Active",
+        "subnets": [
+          {
+            "id": 3,
+            "cidr": "10.0.1.0/24",
+            "description": "Web Servers",
+            "createdDate": "2023-01-10",
+            "modifiedDate": "2023-01-20",
+            "status": "Active"
+          },
+          {
+            "id": 4,
+            "cidr": "10.0.2.0/24",
+            "description": "Database Servers",
+            "createdDate": "2023-01-10",
+            "modifiedDate": "2023-01-20",
+            "status": "Active"
+          }
+        ]
+      }
+    ],
+    "ipAddresses": [
+      {
+        "ip": "192.168.0.1",
+        "subnetId": 1,
+        "hostname": "router.office.local",
+        "macAddress": "00:1A:2B:3C:4D:5E",
+        "deviceType": "Router",
+        "description": "Main Office Router",
+        "status": "Allocated",
+        "createdDate": "2023-01-01",
+        "modifiedDate": "2023-01-15"
+      },
+      {
+        "ip": "192.168.0.2",
+        "subnetId": 1,
+        "hostname": "switch.office.local",
+        "macAddress": "00:1A:2B:3C:4D:5F",
+        "deviceType": "Switch",
+        "description": "Office Switch",
+        "status": "Allocated",
+        "createdDate": "2023-01-01",
+        "modifiedDate": "2023-01-15"
+      },
+      {
+        "ip": "10.0.1.10",
+        "subnetId": 3,
+        "hostname": "webserver01.datacenter.local",
+        "macAddress": "00:1A:2B:3C:4D:60",
+        "deviceType": "Server",
+        "description": "Primary Web Server",
+        "status": "Allocated",
+        "createdDate": "2023-01-10",
+        "modifiedDate": "2023-01-20"
+      },
+      {
+        "ip": "10.0.2.10",
+        "subnetId": 4,
+        "hostname": "dbserver01.datacenter.local",
+        "macAddress": "00:1A:2B:3C:4D:61",
+        "deviceType": "Server",
+        "description": "Primary Database Server",
+        "status": "Allocated",
+        "createdDate": "2023-01-10",
+        "modifiedDate": "2023-01-20"
+      }
+    ],
+    "devices": [
+      {
+        "id": 1,
+        "hostname": "router.office.local",
+        "macAddress": "00:1A:2B:3C:4D:5E",
+        "deviceType": "Router",
+        "ipAddresses": ["192.168.0.1"],
+        "description": "Main Office Router",
+        "location": "Office",
+        "createdDate": "2023-01-01",
+        "modifiedDate": "2023-01-15"
+      },
+      {
+        "id": 2,
+        "hostname": "switch.office.local",
+        "macAddress": "00:1A:2B:3C:4D:5F",
+        "deviceType": "Switch",
+        "ipAddresses": ["192.168.0.2"],
+        "description": "Office Switch",
+        "location": "Office",
+        "createdDate": "2023-01-01",
+        "modifiedDate": "2023-01-15"
+      },
+      {
+        "id": 3,
+        "hostname": "webserver01.datacenter.local",
+        "macAddress": "00:1A:2B:3C:4D:60",
+        "deviceType": "Server",
+        "ipAddresses": ["10.0.1.10"],
+        "description": "Primary Web Server",
+        "location": "Data Center",
+        "createdDate": "2023-01-10",
+        "modifiedDate": "2023-01-20"
+      },
+      {
+        "id": 4,
+        "hostname": "dbserver01.datacenter.local",
+        "macAddress": "00:1A:2B:3C:4D:61",
+        "deviceType": "Server",
+        "ipAddresses": ["10.0.2.10"],
+        "description": "Primary Database Server",
+        "location": "Data Center",
+        "createdDate": "2023-01-10",
+        "modifiedDate": "2023-01-20"
+      }
+    ]
+  } 

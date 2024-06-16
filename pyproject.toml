@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "cloudipmanager"
+version = "0.1.0"
+description = "IP Address Manager for Public Clouds"
+authors = ["Yarash Agarwal <yarash.agarwal@autostoresystem.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pydantic = "^2.7.4"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
