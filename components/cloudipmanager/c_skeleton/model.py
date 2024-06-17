@@ -1,32 +1,37 @@
 from pydantic import BaseModel
 from datetime import datetime
-from typing import Optional,Any
+from typing import Optional
 
 class ipaddress(BaseModel):
     ipaddress: str
     description: str
     unique_resource_id: Optional[str]
-    tags: Optional[list[Any]]
+    tags: Optional[dict[str,str]]
     
 class subnet(BaseModel):
-    id: int
+    id: str
     cidr: str
+    start_ip_address: str
+    end_ip_address: str
+    subnet_mask: str
     description: str
     createdDate: datetime
     modifiedDate: datetime
     status: str
     ip_addresses: Optional[list[ipaddress]]
-    tags: Optional[list[Any]]
+    tags: Optional[dict[str,str]]
 
 class ip_address_inventory(BaseModel):
-    id: int
+    id: str
     cidr: str
+    start_ip_address: str
+    end_ip_address: str
     description: str
     createdDate: datetime 
     modifiedDate: datetime
     status: str
     subnets: list[subnet]
-    tags: Optional[list[Any]]
+    tags: Optional[dict[str,str]]
     
     
     

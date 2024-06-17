@@ -5,6 +5,14 @@ description = "IP Address Manager for Public Clouds"
 authors = ["Yarash Agarwal <yarash.agarwal@autostoresystem.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [
+    {include = "cloudipmanager/c_initialize_address_space",from = "components"},
+    {include = "cloudipmanager/c_logger",from = "components"},
+    {include = "cloudipmanager/c_address_range_to_cidr",from = "components"},
+    {include = "cloudipmanager/c_cidr_to_address_range",from = "components"},
+    {include = "cloudipmanager/c_skeleton",from = "components"},
+    {include = "cloudipmanager/c_add_address_space",from = "components"},
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"

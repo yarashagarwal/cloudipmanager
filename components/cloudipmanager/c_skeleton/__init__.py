@@ -1,3 +1,1 @@
-from cloudipmanager.c_skeleton import core
-
-__all__ = ["core"]
+from cloudipmanager.c_skeleton.default_global_variables import *
