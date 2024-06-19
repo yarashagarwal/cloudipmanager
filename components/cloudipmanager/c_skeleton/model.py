@@ -1,6 +1,12 @@
 from pydantic import BaseModel
-from datetime import datetime
 from typing import Optional
+
+# class log_model:
+#     def __init__:
+#         datetime:
+#         logger_name:
+#         log_level:
+#         message:
 
 class ipaddress(BaseModel):
     ipaddress: str
@@ -15,8 +21,8 @@ class subnet(BaseModel):
     end_ip_address: str
     subnet_mask: str
     description: str
-    createdDate: datetime
-    modifiedDate: datetime
+    createdDate: str
+    modifiedDate: str
     status: str
     ip_addresses: Optional[list[ipaddress]]
     tags: Optional[dict[str,str]]
@@ -27,8 +33,8 @@ class ip_address_inventory(BaseModel):
     start_ip_address: str
     end_ip_address: str
     description: str
-    createdDate: datetime 
-    modifiedDate: datetime
+    createdDate: str 
+    modifiedDate: str
     status: str
     subnets: list[subnet]
     tags: Optional[dict[str,str]]

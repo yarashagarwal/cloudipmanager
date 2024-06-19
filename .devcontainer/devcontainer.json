@@ -50,7 +50,7 @@
                 ],
                 "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
                 "terminal.integrated.env.linux": {
-                    "PYTHONPATH": "${workspaceFolder}/components;${workspaceFolder}/bases"
+                    "PYTHONPATH": "${workspaceFolder}/components;${workspaceFolder}/bases;${workspaceFolder}"
                 }
 			},
 		// Add the IDs of extensions you want installed when the container is created.

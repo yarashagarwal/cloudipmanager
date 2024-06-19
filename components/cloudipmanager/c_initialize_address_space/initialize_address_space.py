@@ -1,8 +1,13 @@
-from components.cloudipmanager.c_skeleton.default_global_variables import default_ip_ranges,global_variables
-from cloudipmanager.c_skeleton.model import ip_address_inventory, subnet
-from cloudipmanager.c_cidr_to_address_range.cidr_to_address_range import cidr_to_address_range
+from components.cloudipmanager.c_skeleton.default_global_variables import default_ip_ranges,global_variables # type: ignore
+from cloudipmanager.c_skeleton.model import ip_address_inventory, subnet # type: ignore
+from cloudipmanager.c_cidr_to_address_range.cidr_to_address_range import cidr_to_address_range # type: ignore
+from cloudipmanager.c_logger.core import logs # type: ignore
 from uuid import uuid4
 from datetime import datetime
+from pprint import pprint
+
+logs_info = logs("INFO", "initialize_addresss_space")
+logger_info = logs_info.logger()
 
 def initialize_address_space() -> dict:
     """Initialize the address space with default values"""
@@ -27,12 +32,12 @@ def initialize_address_space() -> dict:
     start_address_class_C = address_space_range_class_C[0]
     end_address_class_C = address_space_range_class_C[-1]
     
-    description_class_A = "Class A private IP address space"
-    description_class_B = "Class B private IP address space"
-    description_class_C = "Class C private IP address space"
+    description_class_A: str = "Class A private IP address space"
+    description_class_B: str = "Class B private IP address space"
+    description_class_C: str = "Class C private IP address space"
     
-    created_date = datetime.today()
-    modified_date= datetime.today()
+    created_date: str = str(datetime.now())
+    modified_date: str= str(datetime.now())
     
     initial_subnets: list[subnet] = []
     
@@ -50,10 +55,38 @@ def initialize_address_space() -> dict:
                                         subnets = initial_subnets,
                                         tags=None
                                         )
+    address_space_class_B = ip_address_inventory(
+                                        id=address_space_id_class_B,
+                                        cidr=address_space_cidr_class_B,
+                                        start_ip_address=str(start_address_class_B),
+                                        end_ip_address = str(end_address_class_B),
+                                        description = description_class_B,
+                                        createdDate = created_date,
+                                        modifiedDate = modified_date,
+                                        status = status,
+                                        subnets = initial_subnets,
+                                        tags=None
+                                        )
     
-    print(address_space_class_A)
-    #initial_configuration["address_space_class_A"] = address_space_class_A
+    address_space_class_C = ip_address_inventory(
+                                        id=address_space_id_class_C,
+                                        cidr=address_space_cidr_class_C,
+                                        start_ip_address=str(start_address_class_C),
+                                        end_ip_address = str(end_address_class_C),
+                                        description = description_class_C,
+                                        createdDate = created_date,
+                                        modifiedDate = modified_date,
+                                        status = status,
+                                        subnets = initial_subnets,
+                                        tags=None
+                                        )
+    
+    logger_info.info("Creating initial address space entries")
+    initial_configuration["address_space_class_A"] = dict(address_space_class_A)
+    initial_configuration["address_space_class_B"] = dict(address_space_class_B)
+    initial_configuration["address_space_class_C"] = dict(address_space_class_C)
     return initial_configuration
 
 
-initialize_address_space()
+initial_configuration = initialize_address_space()
+pprint(initial_configuration)
