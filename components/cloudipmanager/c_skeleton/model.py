@@ -1,13 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
 
-# class log_model:
-#     def __init__:
-#         datetime:
-#         logger_name:
-#         log_level:
-#         message:
-
 class ipaddress(BaseModel):
     ipaddress: str
     description: str

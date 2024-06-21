@@ -1,13 +1,13 @@
 from components.cloudipmanager.c_skeleton.default_global_variables import default_ip_ranges,global_variables # type: ignore
 from cloudipmanager.c_skeleton.model import ip_address_inventory, subnet # type: ignore
 from cloudipmanager.c_cidr_to_address_range.cidr_to_address_range import cidr_to_address_range # type: ignore
-from cloudipmanager.c_logger.core import logs # type: ignore
+from cloudipmanager.c_logger.logger import Logger # type: ignore
 from uuid import uuid4
 from datetime import datetime
 from pprint import pprint
 
-logs_info = logs("INFO", "initialize_addresss_space")
-logger_info = logs_info.logger()
+logs_info = Logger("INFO", "logger_initialize_addresss_space")
+logger_info = logs_info.get_logger()
 
 def initialize_address_space() -> dict:
     """Initialize the address space with default values"""

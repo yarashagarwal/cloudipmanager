@@ -1,5 +1,5 @@
-from cloudipmanager.c_logger import core
+from cloudipmanager.c_logger import logger
 
 
 def test_sample():
-    assert core is not None
+    assert logger is not None

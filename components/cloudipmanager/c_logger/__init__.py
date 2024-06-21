@@ -1,3 +1,3 @@
-from cloudipmanager.c_logger import core
+from cloudipmanager.c_logger import logger #type: ignore
 
-__all__ = ["core"]
+__all__ = ["logger"]
