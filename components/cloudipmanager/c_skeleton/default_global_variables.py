@@ -15,3 +15,4 @@ class global_variables:
     """Global variables for the application"""
     LOG_LEVEL = "INFO"
     LOG_FILE = "cloudipmanager.log"
+    DB_FILE = "ipconfig.json"

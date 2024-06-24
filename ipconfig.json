@@ -1,0 +1,38 @@
+{
+  "address_space_class_A": {
+    "id": "9a0870ce-5d28-484b-9578-f09135283ec5",
+    "cidr": "10.0.0.0/8",
+    "start_ip_address": "10.0.0.0",
+    "end_ip_address": "10.255.255.255",
+    "description": "Class A private IP address space",
+    "createdDate": "2024-06-23 22:32:44.866874",
+    "modifiedDate": "2024-06-23 22:32:44.866878",
+    "status": "Active",
+    "subnets": [],
+    "tags": null
+  },
+  "address_space_class_B": {
+    "id": "8d0d1e9d-68a8-4a09-ae53-4b857611b5bc",
+    "cidr": "172.16.0.0/12",
+    "start_ip_address": "172.16.0.0",
+    "end_ip_address": "172.31.255.255",
+    "description": "Class B private IP address space",
+    "createdDate": "2024-06-23 22:32:44.866874",
+    "modifiedDate": "2024-06-23 22:32:44.866878",
+    "status": "Active",
+    "subnets": [],
+    "tags": null
+  },
+  "address_space_class_C": {
+    "id": "14cfc9f4-fed4-49bd-b7b3-7b087ab4963a",
+    "cidr": "192.168.0.0/16",
+    "start_ip_address": "192.168.0.0",
+    "end_ip_address": "192.168.255.255",
+    "description": "Class C private IP address space",
+    "createdDate": "2024-06-23 22:32:44.866874",
+    "modifiedDate": "2024-06-23 22:32:44.866878",
+    "status": "Active",
+    "subnets": [],
+    "tags": null
+  }
+}

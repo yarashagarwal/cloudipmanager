@@ -1,10 +1,10 @@
-from components.cloudipmanager.c_skeleton.default_global_variables import default_ip_ranges,global_variables # type: ignore
-from cloudipmanager.c_skeleton.model import ip_address_inventory, subnet # type: ignore
+from components.cloudipmanager.c_skeleton.default_global_variables import default_ip_ranges # type: ignore
+from cloudipmanager.c_skeleton.model import IpAddressSpaceV4, SubnetIpv4 # type: ignore
 from cloudipmanager.c_cidr_to_address_range.cidr_to_address_range import cidr_to_address_range # type: ignore
 from cloudipmanager.c_logger.logger import Logger # type: ignore
 from uuid import uuid4
 from datetime import datetime
-from pprint import pprint
+from cloudipmanager.c_update_database.update_database import update_db
 
 logs_info = Logger("INFO", "logger_initialize_addresss_space")
 logger_info = logs_info.get_logger()
@@ -39,11 +39,11 @@ def initialize_address_space() -> dict:
     created_date: str = str(datetime.now())
     modified_date: str= str(datetime.now())
     
-    initial_subnets: list[subnet] = []
+    initial_subnets: list[SubnetIpv4] = []
     
     status = "Active"
     
-    address_space_class_A = ip_address_inventory(
+    address_space_class_A = IpAddressSpaceV4(
                                         id=address_space_id_class_A,
                                         cidr=address_space_cidr_class_A,
                                         start_ip_address=str(start_address_class_A),
@@ -55,7 +55,7 @@ def initialize_address_space() -> dict:
                                         subnets = initial_subnets,
                                         tags=None
                                         )
-    address_space_class_B = ip_address_inventory(
+    address_space_class_B = IpAddressSpaceV4(
                                         id=address_space_id_class_B,
                                         cidr=address_space_cidr_class_B,
                                         start_ip_address=str(start_address_class_B),
@@ -68,7 +68,7 @@ def initialize_address_space() -> dict:
                                         tags=None
                                         )
     
-    address_space_class_C = ip_address_inventory(
+    address_space_class_C = IpAddressSpaceV4(
                                         id=address_space_id_class_C,
                                         cidr=address_space_cidr_class_C,
                                         start_ip_address=str(start_address_class_C),
@@ -89,4 +89,4 @@ def initialize_address_space() -> dict:
 
 
 initial_configuration = initialize_address_space()
-pprint(initial_configuration)
+update_db("add", initial_configuration)

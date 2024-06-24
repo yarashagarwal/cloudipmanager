@@ -1,13 +1,13 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class ipaddress(BaseModel):
+class IpaddressV4(BaseModel):
     ipaddress: str
     description: str
     unique_resource_id: Optional[str]
     tags: Optional[dict[str,str]]
     
-class subnet(BaseModel):
+class SubnetIpv4(BaseModel):
     id: str
     cidr: str
     start_ip_address: str
@@ -17,10 +17,10 @@ class subnet(BaseModel):
     createdDate: str
     modifiedDate: str
     status: str
-    ip_addresses: Optional[list[ipaddress]]
+    ip_addresses: Optional[list[IpaddressV4]]
     tags: Optional[dict[str,str]]
 
-class ip_address_inventory(BaseModel):
+class IpAddressSpaceV4(BaseModel):
     id: str
     cidr: str
     start_ip_address: str
@@ -29,8 +29,5 @@ class ip_address_inventory(BaseModel):
     createdDate: str 
     modifiedDate: str
     status: str
-    subnets: list[subnet]
+    subnets: list[SubnetIpv4]
     tags: Optional[dict[str,str]]
-    
-    
-    
