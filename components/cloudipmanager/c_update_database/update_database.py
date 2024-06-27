@@ -37,14 +37,23 @@ def db_structure_validation(db_content) -> dict:
     for address_space_block in db_content:
         address_space_model = IpAddressSpaceV4.model_validate(db_content[address_space_block])
         if address_space_model.cidr in private_ip_ranges:
-            private_ip_ranges.remove(address_space_model.cidr)
+            private_ip_ranges.remove(address_space_model.cidr) # should be empty if all ranges are present in the DB
     if len(private_ip_ranges) != 0: # If there are initial address space blocks that are missing from the DB
-        initial_address_spaces = initialize_address_space()
-        for initial_address_space in initial_address_spaces:
+        initial_address_spaces = initialize_address_space() # get the initiazer data structure
+        for initial_address_space in initial_address_spaces: # figure out which one is missing
             initial_address_space_model = IpAddressSpaceV4.model_validate(initial_address_spaces[initial_address_space])
             if initial_address_space_model.cidr in private_ip_ranges:
-                db_content[initial_address_space] = initial_address_space_model.model_dump()
+                db_content[initial_address_space] = initial_address_space_model.model_dump() # add the missing object to the structure 
+    # sort the dictionary before seding it for write
+    db_content=db_sort(db_content)
     return db_content
+
+def db_sort(db_content):
+    keys_sorted = list(db_content)
+    keys_sorted.sort()
+    db_content_sorted_by_keys = {key:db_content[key] for key in keys_sorted}
+    logger_info.info("Sorted the DB alphabetically")
+    return db_content_sorted_by_keys
 
 @db_connection_read_write.open_connection()
 def add_to_db(db_read_write_instance, ipam_content: dict):
