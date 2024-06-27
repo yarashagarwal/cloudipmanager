@@ -13,8 +13,15 @@ class DbConnection:
         def connection(db_function):
             def wrapper(*args):
                 if self.mode not in ("read", "write", "read-write"):
-                    logger_error.error("Invalid Operation type called for the function")
+                    logger_error.error(f"Invalid Operation type {self.mode} called for the function")
+                else:
+                    if self.mode == "read":
+                        self.mode = "r"
+                    elif self.mode == "write":
+                        self.mode = "w"
+                    elif self.mode == "read-write":
+                        self.mode = "r+"
                 with open(self.file_name, self.mode) as file_instance:
-                    db_function(file_instance, *args)
+                    return db_function(file_instance, *args)
             return wrapper
         return connection
