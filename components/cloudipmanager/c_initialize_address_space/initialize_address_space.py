@@ -35,8 +35,8 @@ def initialize_address_space() -> dict:
     description_class_B: str = "Class B private IP address space"
     description_class_C: str = "Class C private IP address space"
     
-    created_date: str = str(datetime.now())
-    modified_date: str= str(datetime.now())
+    created_date = datetime.now()
+    modified_date = datetime.now()
     
     initial_subnets: list[SubnetIpv4] = []
     
@@ -45,8 +45,8 @@ def initialize_address_space() -> dict:
     address_space_class_A = IpAddressSpaceV4(
                                         id=address_space_id_class_A,
                                         cidr=address_space_cidr_class_A,
-                                        start_ip_address=str(start_address_class_A),
-                                        end_ip_address = str(end_address_class_A),
+                                        start_ip_address=start_address_class_A,
+                                        end_ip_address = end_address_class_A,
                                         description = description_class_A,
                                         createdDate = created_date,
                                         modifiedDate = modified_date,
@@ -57,8 +57,8 @@ def initialize_address_space() -> dict:
     address_space_class_B = IpAddressSpaceV4(
                                         id=address_space_id_class_B,
                                         cidr=address_space_cidr_class_B,
-                                        start_ip_address=str(start_address_class_B),
-                                        end_ip_address = str(end_address_class_B),
+                                        start_ip_address=start_address_class_B,
+                                        end_ip_address = end_address_class_B,
                                         description = description_class_B,
                                         createdDate = created_date,
                                         modifiedDate = modified_date,
@@ -70,8 +70,8 @@ def initialize_address_space() -> dict:
     address_space_class_C = IpAddressSpaceV4(
                                         id=address_space_id_class_C,
                                         cidr=address_space_cidr_class_C,
-                                        start_ip_address=str(start_address_class_C),
-                                        end_ip_address = str(end_address_class_C),
+                                        start_ip_address=start_address_class_C,
+                                        end_ip_address = end_address_class_C,
                                         description = description_class_C,
                                         createdDate = created_date,
                                         modifiedDate = modified_date,
@@ -81,7 +81,7 @@ def initialize_address_space() -> dict:
                                         )
     
     logger_info.info("Creating initial address space entries")
-    initial_configuration["address_space_class_A"] = dict(address_space_class_A)
-    initial_configuration["address_space_class_B"] = dict(address_space_class_B)
-    initial_configuration["address_space_class_C"] = dict(address_space_class_C)
+    initial_configuration["address_space_class_A"] = address_space_class_A.model_dump()
+    initial_configuration["address_space_class_B"] = address_space_class_B.model_dump()
+    initial_configuration["address_space_class_C"] = address_space_class_C.model_dump()
     return initial_configuration
