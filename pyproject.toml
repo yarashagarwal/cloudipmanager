@@ -12,11 +12,16 @@ packages = [
     {include = "cloudipmanager/c_cidr_to_address_range",from = "components"},
     {include = "cloudipmanager/c_skeleton",from = "components"},
     {include = "cloudipmanager/c_add_address_space",from = "components"},
+    {include = "cloudipmanager/c_add_subnet",from = "components"},
+    {include = "cloudipmanager/c_update_database",from = "components"},
+    {include = "cloudipmanager/c_update_tags",from = "components"},
+    {include = "cloudipmanager/c_db_connection",from = "components"},
 ]
 
 [tool.poetry.dependencies]
 python = "^3.12"
 pydantic = "^2.7.4"
+typer = "^0.12.3"
 
 
 [tool.poetry.group.dev.dependencies]

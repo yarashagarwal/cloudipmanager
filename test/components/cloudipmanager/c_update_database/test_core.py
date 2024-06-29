@@ -1,4 +1,4 @@
-from cloudipmanager.c_update_database import core
+from cloudipmanager.c_database_operations import core
 
 
 def test_sample():
