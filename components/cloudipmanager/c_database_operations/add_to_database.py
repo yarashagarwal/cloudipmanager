@@ -4,6 +4,7 @@ from cloudipmanager.c_logger.logger import Logger # type: ignore
 from cloudipmanager.c_database_operations.read_database import read_db_content # type: ignore
 from cloudipmanager.c_database_operations.structure_validation_database import structure_validation_db # type: ignore
 from cloudipmanager.c_skeleton.model import IpAddressSpaceV4, IpAddressSubSpaceV4, SubnetIpv4, IpaddressDatabaseV4 # type: ignore
+from cloudipmanager.c_iptools.address_space_number_free_addresses_calculator import address_space_number_free_addresses_calculator # type: ignore
 
 logs_info = Logger("Info", "logger_update_database")
 logger_info = logs_info.get_logger()
@@ -25,6 +26,8 @@ def add_to_db(db_read_write_instance, ipam_content: IpAddressSpaceV4 | IpAddress
                     if sub_add_spaces_checks(address_space_model, ipam_content_model): 
                         address_space_model.address_subspaces[str(ipam_content_model.cidr)] = ipam_content_model
                         db_content.root[str(address_space)] = address_space_model
+                        updated_num_of_available_addresses = address_space_number_free_addresses_calculator(address_space_model.address_subspaces, address_space_model.num_of_addresses)
+                        address_space_model.num_of_available_addresses = updated_num_of_available_addresses
                         continue
         except TypeError:
             db_content = structure_validation_db(db_content)

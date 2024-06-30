@@ -1,102 +1,109 @@
 {
   "address_space_class_A": {
-    "id": "9047343b-5632-41ac-b45d-d761c2573fed",
+    "id": "510c570b-ae67-4c91-9f34-ddf375ee81be",
     "cidr": "10.0.0.0/8",
     "start_ip_address": "10.0.0.0",
     "end_ip_address": "10.255.255.255",
     "description": "Class A private IP address space",
-    "createdDate": "2024-06-29 23:07:36.435898",
-    "modifiedDate": "2024-06-29 23:07:36.435899",
+    "createdDate": "2024-06-30 16:22:55.684174",
+    "modifiedDate": "2024-06-30 16:22:55.684175",
     "status": "Active",
     "address_subspaces": {
-      "10.1.1.0/24": {
-        "id": "3171ce14-ba7d-4bee-b7f3-cb694530b960",
-        "cidr": "10.1.1.0/24",
-        "start_ip_address": "10.1.1.0",
-        "end_ip_address": "10.1.1.255",
-        "description": "test subnet",
-        "createdDate": "2024-06-29 23:11:07.031284",
-        "modifiedDate": "2024-06-29 23:11:07.031286",
-        "status": "Active",
-        "subnets": {},
-        "num_of_addresses": 256,
-        "tags": {
-          "name": "yarash"
-        }
-      },
-      "10.5.1.0/24": {
-        "id": "85792c93-aded-4dc7-a20a-2f65abdf675d",
-        "cidr": "10.5.1.0/24",
-        "start_ip_address": "10.5.1.0",
-        "end_ip_address": "10.5.1.255",
-        "description": "test subnet",
-        "createdDate": "2024-06-29 23:12:07.634703",
-        "modifiedDate": "2024-06-29 23:12:07.634706",
-        "status": "Active",
-        "subnets": {},
-        "num_of_addresses": 256,
-        "tags": {
-          "name": "yarash"
-        }
-      },
       "10.10.1.0/24": {
-        "id": "45e52f8d-adee-41c5-b4f4-74e2f665e2a2",
+        "id": "129d2591-a8a4-4d57-955a-d7ec9295ce38",
         "cidr": "10.10.1.0/24",
         "start_ip_address": "10.10.1.0",
         "end_ip_address": "10.10.1.255",
         "description": "test subnet",
-        "createdDate": "2024-06-29 23:11:50.982297",
-        "modifiedDate": "2024-06-29 23:11:50.982299",
+        "createdDate": "2024-06-30 16:24:06.687190",
+        "modifiedDate": "2024-06-30 16:24:06.687195",
         "status": "Active",
         "subnets": {},
         "num_of_addresses": 256,
+        "num_of_available_addresses": 256,
+        "tags": {
+          "name": "yarash"
+        }
+      },
+      "10.15.1.0/24": {
+        "id": "113482e4-06f7-4b0e-aeb9-16b91d022186",
+        "cidr": "10.15.1.0/24",
+        "start_ip_address": "10.15.1.0",
+        "end_ip_address": "10.15.1.255",
+        "description": "test subnet",
+        "createdDate": "2024-06-30 16:34:14.109827",
+        "modifiedDate": "2024-06-30 16:34:14.109834",
+        "status": "Active",
+        "subnets": {},
+        "num_of_addresses": 256,
+        "num_of_available_addresses": 256,
         "tags": {
           "name": "yarash"
         }
       },
       "10.20.1.0/24": {
-        "id": "e9a23102-b758-4bc8-a817-641e97688a3b",
+        "id": "a4a0073d-acc6-4c98-9a44-01ca5e4ca721",
         "cidr": "10.20.1.0/24",
         "start_ip_address": "10.20.1.0",
         "end_ip_address": "10.20.1.255",
         "description": "test subnet",
-        "createdDate": "2024-06-29 23:12:21.135711",
-        "modifiedDate": "2024-06-29 23:12:21.135714",
+        "createdDate": "2024-06-30 16:22:55.682650",
+        "modifiedDate": "2024-06-30 16:22:55.682655",
         "status": "Active",
         "subnets": {},
         "num_of_addresses": 256,
+        "num_of_available_addresses": 256,
+        "tags": {
+          "name": "yarash"
+        }
+      },
+      "10.90.1.0/24": {
+        "id": "50cf1c1d-4fa9-42f8-a885-2a79cda88af0",
+        "cidr": "10.90.1.0/24",
+        "start_ip_address": "10.90.1.0",
+        "end_ip_address": "10.90.1.255",
+        "description": "test subnet",
+        "createdDate": "2024-06-30 16:31:47.480182",
+        "modifiedDate": "2024-06-30 16:31:47.480185",
+        "status": "Active",
+        "subnets": {},
+        "num_of_addresses": 256,
+        "num_of_available_addresses": 256,
         "tags": {
           "name": "yarash"
         }
       }
     },
     "num_of_addresses": 16777216,
+    "num_of_available_addresses": 16776192,
     "tags": null
   },
   "address_space_class_B": {
-    "id": "9553dbb1-d20b-40a9-a296-dfdc98b44580",
+    "id": "b121b0a8-0197-4e55-a405-5324cf83a763",
     "cidr": "172.16.0.0/12",
     "start_ip_address": "172.16.0.0",
     "end_ip_address": "172.31.255.255",
     "description": "Class B private IP address space",
-    "createdDate": "2024-06-29 23:07:36.435898",
-    "modifiedDate": "2024-06-29 23:07:36.435899",
+    "createdDate": "2024-06-30 16:22:55.684174",
+    "modifiedDate": "2024-06-30 16:22:55.684175",
     "status": "Active",
     "address_subspaces": {},
     "num_of_addresses": 1048576,
+    "num_of_available_addresses": 16777216,
     "tags": null
   },
   "address_space_class_C": {
-    "id": "e64fca88-3e2a-4881-b60f-fb3c1efe5076",
+    "id": "f682d2e4-ff5c-4d7d-a513-37bd7d5058c5",
     "cidr": "192.168.0.0/16",
     "start_ip_address": "192.168.0.0",
     "end_ip_address": "192.168.255.255",
     "description": "Class C private IP address space",
-    "createdDate": "2024-06-29 23:07:36.435898",
-    "modifiedDate": "2024-06-29 23:07:36.435899",
+    "createdDate": "2024-06-30 16:22:55.684174",
+    "modifiedDate": "2024-06-30 16:22:55.684175",
     "status": "Active",
     "address_subspaces": {},
     "num_of_addresses": 65536,
+    "num_of_available_addresses": 16777216,
     "tags": null
   }
 }

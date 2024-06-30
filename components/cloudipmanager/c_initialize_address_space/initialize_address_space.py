@@ -19,18 +19,21 @@ def initialize_address_space() -> dict:
     
     address_space_cidr_class_A = default_ip_ranges.CLASS_A_PRIVATE_IP_RANGE.value
     number_of_addresses_address_space_cidr_class_A = cidr_to_size(address_space_cidr_class_A)
+    num_of_available_addresses_address_space_cidr_class_A = number_of_addresses_address_space_cidr_class_A
     address_space_range_class_A = cidr_to_address_range(address_space_cidr_class_A)
     start_address_class_A = address_space_range_class_A[0]
     end_address_class_A = address_space_range_class_A[-1]
     
     address_space_cidr_class_B = default_ip_ranges.CLASS_B_PRIVATE_IP_RANGE.value
     number_of_addresses_address_space_cidr_class_B = cidr_to_size(address_space_cidr_class_B)
+    num_of_available_addresses_address_space_cidr_class_B = number_of_addresses_address_space_cidr_class_B
     address_space_range_class_B = cidr_to_address_range(address_space_cidr_class_B)
     start_address_class_B = address_space_range_class_B[0]
     end_address_class_B = address_space_range_class_B[-1]
     
     address_space_cidr_class_C = default_ip_ranges.CLASS_C_PRIVATE_IP_RANGE.value
     number_of_addresses_address_space_cidr_class_C = cidr_to_size(address_space_cidr_class_C)
+    num_of_available_addresses_address_space_cidr_class_C = number_of_addresses_address_space_cidr_class_C
     address_space_range_class_C = cidr_to_address_range(address_space_cidr_class_C)
     start_address_class_C = address_space_range_class_C[0]
     end_address_class_C = address_space_range_class_C[-1]
@@ -57,6 +60,7 @@ def initialize_address_space() -> dict:
                                         status = status,
                                         address_subspaces = {},
                                         num_of_addresses = number_of_addresses_address_space_cidr_class_A,
+                                        num_of_available_addresses = num_of_available_addresses_address_space_cidr_class_A,
                                         tags=None
                                         )
     address_space_class_B = IpAddressSpaceV4(
@@ -70,6 +74,7 @@ def initialize_address_space() -> dict:
                                         status = status,
                                         address_subspaces = initial_address_subspaces,
                                         num_of_addresses = number_of_addresses_address_space_cidr_class_B,
+                                        num_of_available_addresses = num_of_available_addresses_address_space_cidr_class_A,
                                         tags=None
                                         )
     
@@ -84,6 +89,7 @@ def initialize_address_space() -> dict:
                                         status = status,
                                         address_subspaces = initial_address_subspaces,
                                         num_of_addresses = number_of_addresses_address_space_cidr_class_C,
+                                        num_of_available_addresses = num_of_available_addresses_address_space_cidr_class_A,
                                         tags=None
                                         )
     

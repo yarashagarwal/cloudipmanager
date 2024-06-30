@@ -23,7 +23,7 @@ class SubnetIpv4(BaseModel):
     createdDate: datetime
     modifiedDate: datetime
     status: str
-    ip_addresses: Optional[list[IpaddressV4]]
+    ip_addresses: Optional[dict[str,IpaddressV4]]
     num_of_addresses: int
     num_of_available_addresses: int
     tags: Optional[dict[str,str]]
