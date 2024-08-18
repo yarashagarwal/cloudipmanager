@@ -1,7 +1,7 @@
-from components.cloudipmanager.c_skeleton.default_global_variables import default_ip_ranges # type: ignore
+from cloudipmanager.c_skeleton.default_global_variables import default_ip_ranges # type: ignore
 from cloudipmanager.c_skeleton.model import IpAddressSpaceV4, IpAddressSubSpaceV4, IpaddressDatabaseV4 # type: ignore
 from cloudipmanager.c_cidr_to_address_range.cidr_to_address_range import cidr_to_address_range # type: ignore
-from cloudipmanager.c_iptools.address_space_to_size_calculator import cidr_to_size
+from cloudipmanager.c_iptools.address_space_to_size_calculator import cidr_to_size # type: ignore
 from cloudipmanager.c_logger.logger import Logger # type: ignore
 from uuid import uuid4
 from datetime import datetime

@@ -18,7 +18,7 @@ class SubnetIpv4(BaseModel):
     cidr: IPv4Network
     start_ip_address: IPv4Address
     end_ip_address: IPv4Address
-    subnet_mask: str
+    subnet_mask: IPv4Address
     description: str
     createdDate: datetime
     modifiedDate: datetime
@@ -47,7 +47,10 @@ class SubnetIpv4(BaseModel):
     @field_serializer('modifiedDate')
     def serialize_modifiedDate(self, modifiedDate: datetime):
         return str(modifiedDate)
-
+    
+    @field_serializer('subnet_mask')
+    def serialize_netmask(self, subnet_mask: IPv4Address):
+        return str(subnet_mask)
 class IpAddressSubSpaceV4(BaseModel):
     id: str
     cidr: IPv4Network

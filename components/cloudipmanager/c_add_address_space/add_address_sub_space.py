@@ -12,7 +12,7 @@ logger_info = logs_info.get_logger()
 logs_error = Logger("Error", "logger_add_address_sub_space")
 logger_error = logs_error.get_logger()
 
-class  add_address_space:
+class  add_address_sub_space:
     def __init__(self, new_address_sub_space_cidr, new_address_sub_space_description, new_address_sub_space_status, new_address_space_tags):
         self.id = str(uuid4())
         self.cidr = new_address_sub_space_cidr
@@ -31,7 +31,7 @@ class  add_address_space:
         address_sub_space_model = IpAddressSubSpaceV4.model_validate(self.__dict__)
         update_db("add", address_sub_space_model)
 
-new_address_space = add_address_space("10.15.1.0/24","test subnet","Active",{"name" : "yarash"})
+new_address_space = add_address_sub_space("10.15.1.0/24","test subnet","Active",{"name" : "yarash"})
 new_address_space.add()
 
 

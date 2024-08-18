@@ -16,3 +16,5 @@ def update_db(operation: str, ipam_content: IpAddressSpaceV4 | IpAddressSubSpace
         logger_error.error(f"Invalid Operation - {operation} - type called for the function")
     if operation.lower() == "add":
         add_to_db(ipam_content)
+        
+

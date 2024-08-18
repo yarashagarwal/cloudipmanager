@@ -13,9 +13,10 @@ packages = [
     {include = "cloudipmanager/c_skeleton",from = "components"},
     {include = "cloudipmanager/c_add_address_space",from = "components"},
     {include = "cloudipmanager/c_add_subnet",from = "components"},
-    {include = "cloudipmanager/c_update_database",from = "components"},
     {include = "cloudipmanager/c_update_tags",from = "components"},
     {include = "cloudipmanager/c_db_connection",from = "components"},
+    {include = "cloudipmanager/c_database_operations",from = "components"},
+    {include = "cloudipmanager/c_iptools",from = "components"},
 ]
 
 [tool.poetry.dependencies]

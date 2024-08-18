@@ -1,39 +1,40 @@
-from cloudipmanager.c_skeleton.model import IpAddressSubSpaceV4 # type: ignore
+from cloudipmanager.c_skeleton.model import SubnetIpv4 # type: ignore
 from cloudipmanager.c_logger.logger import Logger # type: ignore
 from cloudipmanager.c_iptools.address_space_to_size_calculator import cidr_to_size # type: ignore
-from cloudipmanager.c_cidr_to_address_range.cidr_to_address_range import cidr_to_address_range
+from cloudipmanager.c_cidr_to_address_range.cidr_to_address_range import cidr_to_address_range # type: ignore
 from cloudipmanager.c_database_operations.update_database import update_db # type: ignore
 from uuid import uuid4
 from datetime import datetime
+import ipaddress
 
-logs_info = Logger("Info", "logger_add_address_sub_space")
+logs_info = Logger("Info", "logger_add_subnet")
 logger_info = logs_info.get_logger()
 
-logs_error = Logger("Error", "logger_add_address_sub_space")
+logs_error = Logger("Error", "logger_add_subnet")
 logger_error = logs_error.get_logger()
 
-class  add_address_space:
-    def __init__(self, new_address_sub_space_cidr, new_address_sub_space_description, new_address_sub_space_status, new_address_space_tags):
+class  add_subnet:
+    def __init__(self, new_subnet_cidr, new_subnet_description, new_subnet_status, new_subnet_tags):
         self.id = str(uuid4())
-        self.cidr = new_address_sub_space_cidr
-        self.start_ip_address = cidr_to_address_range(str(new_address_sub_space_cidr))[0]
-        self.end_ip_address = cidr_to_address_range(str(new_address_sub_space_cidr))[-1]
-        self.subnet_mask = 
-        self.description = new_address_sub_space_description
+        self.cidr = new_subnet_cidr
+        self.start_ip_address = cidr_to_address_range(str(new_subnet_cidr))[0]
+        self.end_ip_address = cidr_to_address_range(str(new_subnet_cidr))[-1]
+        self.subnet_mask = ipaddress.IPv4Network(self.cidr).netmask
+        self.description = new_subnet_description
         self.createdDate = datetime.now()
         self.modifiedDate = datetime.now()
-        self.status = new_address_sub_space_status
+        self.status = new_subnet_status
         self.ip_addresses = {}
-        self.num_of_addresses = cidr_to_size(new_address_sub_space_cidr)
+        self.num_of_addresses = cidr_to_size(new_subnet_cidr)
         self.num_of_available_addresses = self.num_of_addresses
-        self.tags = new_address_space_tags
+        self.tags = new_subnet_tags
     
     def add(self):
-        address_sub_space_model = IpAddressSubSpaceV4.model_validate(self.__dict__)
-        update_db("add", address_sub_space_model)
+        subnet_model = SubnetIpv4.model_validate(self.__dict__)
+        update_db("add", subnet_model)
 
-new_address_space = add_address_space("10.15.1.0/24","test subnet","Active",{"name" : "yarash"})
-new_address_space.add()
+new_subnet = add_subnet("10.15.1.128/25","test subnet","Active",{"name" : "yarash"})
+new_subnet.add()
 
 
         

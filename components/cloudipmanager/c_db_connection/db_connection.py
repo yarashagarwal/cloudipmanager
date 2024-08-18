@@ -9,9 +9,9 @@ class DbConnection:
         self.file_name=global_variables.DB_FILE
         self.mode = mode
         
-    def open_connection(self):
-        def connection(db_function):
-            def wrapper(*args):
+    def open_connection(self): #This class instance function is called and the connection function is returned and therefore the connection function really becomes the decorator function
+        def connection(db_function): # This is the actual decorator function which then decorates the db_function
+            def wrapper(*args): # This is the wrapper function which replaces the decorated function
                 if self.mode not in ("read", "write", "read-write"):
                     logger_error.error(f"Invalid Operation type {self.mode} called for the function")
                 else:
@@ -22,6 +22,6 @@ class DbConnection:
                     elif self.mode == "read-write":
                         self.mode = "r+"
                 with open(self.file_name, self.mode) as file_instance:
-                    return db_function(file_instance, *args)
+                    return db_function(file_instance, *args) # db_function is called with file_instance and the arguments
             return wrapper
         return connection
