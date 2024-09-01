@@ -13,63 +13,56 @@ logs_error = Logger("Error", "logger_update_database")
 logger_error = logs_error.get_logger()
 db_connection_read_write = DbConnection("read-write")
 
+
 @db_connection_read_write.open_connection()
-def add_to_db(db_read_write_instance, ipam_content: IpAddressSpaceV4 | IpAddressSubSpaceV4 | SubnetIpv4):
-    db_content = read_db_content()
+def add_to_db(db_read_write_instance, user_input_model: IpAddressSpaceV4 | IpAddressSubSpaceV4 | SubnetIpv4):
+    db_content: IpaddressDatabaseV4  = read_db_content()
     # Add new address spaces to the DB
-    if "subnets" in (ipam_content.model_dump()).keys():  # If content to be added is of address space type
-        ipam_content_model = ipam_content
-        try:
-            for address_space in db_content.root:
-                address_space_model = IpAddressSpaceV4.model_validate(db_content.root[address_space])
-                if ipam_content_model.cidr.subnet_of(address_space_model.cidr):
-                    if sub_add_spaces_checks(address_space_model, ipam_content_model): 
-                        address_space_model.address_subspaces[str(ipam_content_model.cidr)] = ipam_content_model
-                        updated_num_of_available_addresses = address_space_number_free_addresses_calculator(address_space_model.address_subspaces, address_space_model.num_of_addresses)
-                        address_space_model.num_of_available_addresses = updated_num_of_available_addresses
-                        db_content.root[str(address_space)] = address_space_model
-                        continue
-        except TypeError:
-            db_content = structure_validation_db(db_content)
-    if "ip_addresses" in (ipam_content.model_dump()).keys(): # If the ipma content is of sype subnet space
-        ipam_content_model = ipam_content
-        try:
-            for address_space in db_content.root:
-                address_space_model = IpAddressSpaceV4.model_validate(db_content.root[address_space])
-                if ipam_content_model.cidr.subnet_of(address_space_model.cidr):
-                    for address_sub_space in address_space_model.address_subspaces:
-                        address_sub_space_model = IpAddressSubSpaceV4.model_validate(address_space_model.address_subspaces[address_sub_space])
-                        if ipam_content_model.cidr.subnet_of(address_sub_space_model.cidr):
-                            if subnet_checks(address_sub_space_model,ipam_content_model):
-                                address_sub_space_model.subnets[str(ipam_content_model.cidr)] = ipam_content_model
-                                updated_num_of_subspace_available_addresses = address_space_number_free_addresses_calculator(address_sub_space_model.subnets, address_sub_space_model.num_of_addresses)
-                                address_sub_space_model.num_of_available_addresses = updated_num_of_subspace_available_addresses
-                                db_content.root[str(address_space)] = address_space_model
-        except:
-            db_content = structure_validation_db(db_content)
+    for address_space_cidr, address_space_model in db_content.root.items():
+        if hasattr(user_input_model, "subnets"):  # If content to be added is of address space type
+            try:
+                if user_input_model.cidr.subnet_of(address_space_model.cidr) and sub_add_spaces_checks_before_add(address_space_model, user_input_model): 
+                    address_space_model.address_subspaces[str(user_input_model.cidr)] = user_input_model
+                    updated_num_of_available_addresses = address_space_number_free_addresses_calculator(address_space_model.address_subspaces, address_space_model.num_of_addresses)
+                    address_space_model.num_of_available_addresses = updated_num_of_available_addresses
+                    db_content.root[address_space_cidr] = address_space_model
+                    break
+            except TypeError:
+                db_content = structure_validation_db(db_content)
+            
+        if hasattr(user_input_model, "ip_addresses"): # If the user input content is of type subnet space
+            try:
+                for sub_address_space_cidr, sub_address_space_model in address_space_model.address_subspaces.items():
+                    if user_input_model.cidr.subnet_of(sub_address_space_model.cidr) and subnet_checks_before_add(sub_address_space_model, user_input_model):
+                        sub_address_space_model.subnets[str(user_input_model.cidr)] = user_input_model
+                        updated_num_of_subspace_available_addresses = address_space_number_free_addresses_calculator(sub_address_space_model.subnets, sub_address_space_model.num_of_addresses)
+                        sub_address_space_model.num_of_available_addresses = updated_num_of_subspace_available_addresses
+                        db_content.root.address_subspaces[sub_address_space_cidr] = sub_address_space_model
+            except TypeError:
+                db_content = structure_validation_db(db_content)
             
     db_content = structure_validation_db(db_content)
     json.dump(IpaddressDatabaseV4.model_dump(db_content), db_read_write_instance, indent=2)
     
 
-def sub_add_spaces_checks(address_space_model, ipam_content_model) -> bool:
+def sub_add_spaces_checks_before_add(address_space_model, user_input_model) -> bool:
     check_result: bool = True
     # Check if the sub address space already exists
-    if str(ipam_content_model.cidr) in list(address_space_model.address_subspaces.keys()): 
-        check_result: bool = False
+    if str(user_input_model.cidr) in address_space_model.address_subspaces.keys(): 
+        check_result = False
     # Check if the sub address overlaps with an existing sub address space
-    for address_sub_space in address_space_model.address_subspaces:
-        if ipam_content_model.cidr.overlaps(address_sub_space.cidr):
-            check_result: bool = False
+    for address_sub_space in address_space_model.address_subspaces.values():
+        if user_input_model.cidr.overlaps(address_sub_space.cidr):
+            check_result = False
     return check_result
 
-def subnet_checks(address_sub_space_model, ipam_content_model) -> bool:
+def subnet_checks_before_add(address_sub_space_model, user_input_model) -> bool:
     check_result: bool = True
     # Check if the subnet address space already exists
-    if str(ipam_content_model.cidr) in list(address_sub_space_model.subnets.keys()):
-        check_result: bool = False
+    if str(user_input_model.cidr) in address_sub_space_model.subnets.keys():
+        check_result = False
     # Check if the subnet address overlaps with an existing subnet address space
     for subnet_address_space in address_sub_space_model.subnets:
-        if ipam_content_model.cidr.overlaps(subnet_address_space.cidr):
-            check_result: bool = False
+        if user_input_model.cidr.overlaps(subnet_address_space.cidr):
+            check_result = False
     return check_result

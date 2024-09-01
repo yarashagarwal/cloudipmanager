@@ -23,5 +23,6 @@ class DbConnection:
                         self.mode = "r+"
                 with open(self.file_name, self.mode) as file_instance:
                     return db_function(file_instance, *args) # db_function is called with file_instance and the arguments
+                    # the first argument of every function that is decorated with this function, must be the file instance, which can then be used inside the decorated function
             return wrapper
         return connection
