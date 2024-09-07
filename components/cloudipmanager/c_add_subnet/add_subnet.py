@@ -33,9 +33,5 @@ class  add_subnet:
         subnet_model = SubnetIpv4.model_validate(self.__dict__)
         update_db("add", subnet_model)
 
-new_subnet = add_subnet("10.15.4.128/25","test subnet","Active",{"name" : "yarash"})
+new_subnet = add_subnet("10.15.5.128/25","test subnet","Active",{"name" : "yarash"})
 new_subnet.add()
-
-
-        
-        

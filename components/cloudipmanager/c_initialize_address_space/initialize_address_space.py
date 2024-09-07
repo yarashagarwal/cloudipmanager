@@ -9,10 +9,10 @@ from datetime import datetime
 logs_info = Logger("INFO", "logger_initialize_addresss_space")
 logger_info = logs_info.get_logger()
 
-def initialize_address_space() -> dict:
+def initialize_address_space():
     """Initialize the address space with default values"""
     # Initialize the address space with default values
-    initial_configuration: dict = {}
+
     address_space_id_class_A = str(uuid4())
     address_space_id_class_B = str(uuid4())
     address_space_id_class_C = str(uuid4())
@@ -94,8 +94,9 @@ def initialize_address_space() -> dict:
                                         )
     
     logger_info.info("Creating initial address space entries")
-    initial_configuration["address_space_class_A"] = address_space_class_A
-    initial_configuration["address_space_class_B"] = address_space_class_B
-    initial_configuration["address_space_class_C"] = address_space_class_C
+    initial_configuration = {}
+    initial_configuration[default_ip_ranges.CLASS_A_PRIVATE_IP_RANGE.value] = address_space_class_A
+    initial_configuration[default_ip_ranges.CLASS_B_PRIVATE_IP_RANGE.value] = address_space_class_B
+    initial_configuration[default_ip_ranges.CLASS_C_PRIVATE_IP_RANGE.value] = address_space_class_C
     initial_configuration = IpaddressDatabaseV4.model_validate(initial_configuration)
     return initial_configuration

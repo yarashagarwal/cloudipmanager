@@ -4,7 +4,7 @@ from ipaddress import IPv4Network, IPv4Address
 from datetime import datetime
 
 class IpaddressV4(BaseModel):
-    ipaddress: IPv4Address
+    ip_address: IPv4Address
     description: str
     unique_resource_id: Optional[str]
     tags: Optional[dict[str,str]]
