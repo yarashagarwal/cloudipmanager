@@ -17,6 +17,10 @@ packages = [
     {include = "cloudipmanager/c_db_connection",from = "components"},
     {include = "cloudipmanager/c_database_operations",from = "components"},
     {include = "cloudipmanager/c_iptools",from = "components"},
+    {include = "cloudipmanager/c_add_ip_address",from = "components"},
+    {include = "cloudipmanager/c_delete_address_subspace",from = "components"},
+    {include = "cloudipmanager/c_delete_ip_address",from = "components"},
+    {include = "cloudipmanager/c_delete_subnet",from = "components"},
 ]
 
 [tool.poetry.dependencies]

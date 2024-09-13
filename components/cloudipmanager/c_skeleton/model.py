@@ -9,9 +9,9 @@ class IpaddressV4(BaseModel):
     unique_resource_id: Optional[str]
     tags: Optional[dict[str,str]]
     
-    @field_serializer('ipaddress')
-    def serialize_ipaddress(self, ipaddress: IPv4Address):
-        return str(ipaddress)
+    @field_serializer('ip_address')
+    def serialize_ipaddress(self, ip_address: IPv4Address):
+        return str(ip_address)
     
 class SubnetIpv4(BaseModel):
     id: str
@@ -124,3 +124,7 @@ class IpaddressDatabaseV4(RootModel[dict[str, IpAddressSpaceV4]]):
     def model_dump(self, **kwargs):
         database_dictionary = super().model_dump(**kwargs)
         return  {str(k):v for k,v in database_dictionary.items()}
+    
+class DeleteObjectIpv4(BaseModel):
+    object_type_to_be_deleted: str
+    object_to_be_deleted: IPv4Network | IPv4Address

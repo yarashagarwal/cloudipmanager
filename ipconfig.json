@@ -77,7 +77,40 @@
             "createdDate": "2024-09-07 19:38:08.274459",
             "modifiedDate": "2024-09-07 19:38:08.274464",
             "status": "Active",
-            "ip_addresses": {},
+            "ip_addresses": {
+              "10.15.5.1": {
+                "ip_address": "10.15.5.1",
+                "description": "First IP address of the subnet",
+                "unique_resource_id": "5f53deaf-6a70-41c0-bb14-0674fe66496c",
+                "tags": {
+                  "usage": "none"
+                }
+              },
+              "10.15.5.2": {
+                "ip_address": "10.15.5.2",
+                "description": "First IP address of the subnet",
+                "unique_resource_id": "52c50cc6-ba4e-4f13-936f-b534e30e66be",
+                "tags": {
+                  "usage": "none"
+                }
+              },
+              "10.15.5.3": {
+                "ip_address": "10.15.5.3",
+                "description": "First IP address of the subnet",
+                "unique_resource_id": "bc8aef0c-b9c4-497f-9b8e-d7c3c1410a93",
+                "tags": {
+                  "usage": "none"
+                }
+              },
+              "10.15.5.5": {
+                "ip_address": "10.15.5.5",
+                "description": "First IP address of the subnet",
+                "unique_resource_id": "ef2a4527-2a23-47f2-83e6-6b6f7c639412",
+                "tags": {
+                  "usage": "none"
+                }
+              }
+            },
             "num_of_addresses": 128,
             "num_of_available_addresses": 128,
             "tags": {
@@ -117,9 +150,27 @@
         "createdDate": "2024-09-07 19:17:48.006713",
         "modifiedDate": "2024-09-07 19:17:48.006719",
         "status": "Active",
-        "subnets": {},
+        "subnets": {
+          "10.15.6.0/25": {
+            "id": "9e12f209-6230-48d6-a2e7-2e2fb29c573f",
+            "cidr": "10.15.6.0/25",
+            "start_ip_address": "10.15.6.0",
+            "end_ip_address": "10.15.6.127",
+            "subnet_mask": "255.255.255.128",
+            "description": "test subnet",
+            "createdDate": "2024-09-08 12:24:31.102327",
+            "modifiedDate": "2024-09-08 12:24:31.102329",
+            "status": "Active",
+            "ip_addresses": {},
+            "num_of_addresses": 128,
+            "num_of_available_addresses": 128,
+            "tags": {
+              "name": "yarash"
+            }
+          }
+        },
         "num_of_addresses": 256,
-        "num_of_available_addresses": 256,
+        "num_of_available_addresses": 128,
         "tags": {
           "name": "yarash"
         }

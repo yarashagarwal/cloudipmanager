@@ -1,5 +1,5 @@
 from cloudipmanager.c_logger.logger import Logger # type: ignore
-from cloudipmanager.c_skeleton.model import IpAddressSpaceV4, IpAddressSubSpaceV4, SubnetIpv4, IpaddressDatabaseV4 # type: ignore  # type: ignore
+from cloudipmanager.c_skeleton.model import IpAddressSpaceV4, IpAddressSubSpaceV4, SubnetIpv4, IpaddressDatabaseV4, IpaddressV4 # type: ignore  # type: ignore
 
 logs_info = Logger("Info", "logger_update_database")
 logger_info = logs_info.get_logger()
@@ -37,4 +37,12 @@ def sort_subnets(subnets: dict[str, SubnetIpv4]):
     subnets_keys.sort()
     subnets_sorted = {subnets_key: subnets[subnets_key] for subnets_key in subnets_keys}
     # Sorted subnets. Next sorting IP addresses in a subnet
+    for subnet in subnets_sorted:
+        subnets_sorted[subnet]["ip_addresses"] = sort_ip_addresses(subnets_sorted[subnet]["ip_addresses"])
     return subnets_sorted
+
+def sort_ip_addresses(ip_addresses: dict[str, IpaddressV4]):
+    ip_address_keys = list(ip_addresses)
+    ip_address_keys.sort()
+    ip_addresses_sorted = {ip_address_key: ip_addresses[ip_address_key] for ip_address_key in ip_address_keys}
+    return ip_addresses_sorted
